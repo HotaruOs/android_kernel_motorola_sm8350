@@ -69,11 +69,12 @@ completion() {
         find . -name "*.zip" -type f -delete
         zip -r AnyKernel.zip *
         cp AnyKernel.zip $zip_name
-        cp $anykernel/$zip_name $HOME/$zip_name
+        cp $anykernel/$zip_name $kernel_dir/$zip_name
         rm -rf $anykernel
         END=$(date +"%s")
         DIFF=$(($END - $START))
-        curl -F "file=@$HOME/$zip_name" https://temp.sh/upload
+        echo -e "\nCompleted in $((SECONDS / 60)) minute(s) and $((SECONDS % 60)) second(s) !"
+        curl -F "file=@$kernel_dir/$zip_name" https://temp.sh/upload
         echo -e ${LGR} "############################################"
         echo -e ${LGR} "############# OkThisIsEpic!  ##############"
         echo -e ${LGR} "############################################${NC}"
